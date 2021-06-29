@@ -29,6 +29,7 @@ namespace AccountOwnerServer
             services.ConfigureLoggerService();
             services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }
