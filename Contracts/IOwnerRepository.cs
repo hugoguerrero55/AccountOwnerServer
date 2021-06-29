@@ -9,5 +9,8 @@ namespace Contracts
         IEnumerable<Owner> GetAllOwners();
         Owner GetOwnerById(Guid IdOwner);
         Owner GetOwnerWithDetails(Guid IdOwner);
+        void CreateOwner(Owner owner);
+        void UpdateOwner(Owner owner);
+        void DeleteOwner(Owner owner);
     }
 }
