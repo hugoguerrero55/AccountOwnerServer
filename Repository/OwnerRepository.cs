@@ -1,6 +1,8 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +17,18 @@ namespace Repository
         public IEnumerable<Owner> GetAllOwners()
         {
             return FindAll().OrderBy(o => o.Name).ToList();
+        }
+
+        public Owner GetOwnerById(Guid IdOwner)
+        {
+            return FindByCondition(f => f.IdOwner == IdOwner).FirstOrDefault();
+        }
+
+        public Owner GetOwnerWithDetails(Guid IdOwner)
+        {
+            return FindByCondition(f => f.IdOwner == IdOwner)
+                .Include(i => i.Accounts)
+                .FirstOrDefault();
         }
     }
 }
