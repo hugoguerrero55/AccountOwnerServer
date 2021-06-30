@@ -9,6 +9,7 @@ namespace Entities.Models
     public class Owner
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdOwner { get; set; }
 
         [Required(ErrorMessage = "Name is required")]

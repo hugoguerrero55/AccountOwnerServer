@@ -8,6 +8,7 @@ namespace Entities.Models
     public class Account
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdAccount { get; set; }
 
         [Required(ErrorMessage = "Date created is required")]

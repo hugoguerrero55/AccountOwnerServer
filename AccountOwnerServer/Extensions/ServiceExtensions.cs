@@ -37,8 +37,12 @@ namespace AccountOwnerServer.Extensions
 
         public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
         {
-            var connectionString = config["Logging:mysqlconnection:connectionString"];
-            services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+            //var connectionString = config["mysqlconnection:connectionString"];
+            //services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+
+            var connectionString = config["ConnectionString:AccountOwnerDB"];
+            services.AddDbContext<RepositoryContext>
+                (o => o.UseSqlServer(connectionString));
         }
 
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
