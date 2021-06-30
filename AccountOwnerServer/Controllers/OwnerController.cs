@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AccountOwnerServer.Controllers
 {
@@ -25,11 +26,11 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllOwners()
+        public async Task<IActionResult> GetAllOwners()
         {
             try
             {
-                var owners = _repository.Owner.GetAllOwners();
+                var owners = await _repository.Owner.GetAllOwnersAsync();
                 _logger.LogInfo("Returned all owners from database");
 
                 var ownersResult = _mapper.Map<IEnumerable<OwnerDto>>(owners);
@@ -43,11 +44,11 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpGet("{id}", Name = "OwnerById")]
-        public IActionResult GetOwnerById(Guid id)
+        public async Task<IActionResult> GetOwnerById(Guid id)
         {
             try
             {
-                var owner = _repository.Owner.GetOwnerById(id);
+                var owner = await _repository.Owner.GetOwnerByIdAsync(id);
                 if (owner == null)
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
@@ -68,11 +69,11 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpGet("{id}/account")]
-        public IActionResult GetOwnerWithDetails(Guid id)
+        public async Task<IActionResult> GetOwnerWithDetails(Guid id)
         {
             try
             {
-                var owner = _repository.Owner.GetOwnerWithDetails(id);
+                var owner = await _repository.Owner.GetOwnerWithDetailsAsync(id);
                 if (owner is null)
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
@@ -94,7 +95,7 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOwner([FromBody] OwnerForCreationDto owner)
+        public async Task<IActionResult> CreateOwner([FromBody] OwnerForCreationDto owner)
         {
             try
             {
@@ -113,7 +114,7 @@ namespace AccountOwnerServer.Controllers
                 var ownerEntity = _mapper.Map<Owner>(owner);
 
                 _repository.Owner.CreateOwner(ownerEntity);
-                _repository.Save();
+                await _repository.SaveAsync();
 
                 var createdOwner = _mapper.Map<OwnerDto>(ownerEntity);
                 return CreatedAtAction(nameof(GetOwnerById), new { id = createdOwner.IdOwner }, createdOwner);
@@ -126,7 +127,7 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOwner(Guid id, [FromBody] OwnerForUpdateDto owner)
+        public async Task<IActionResult> UpdateOwner(Guid id, [FromBody] OwnerForUpdateDto owner)
         {
             try
             {
@@ -142,7 +143,7 @@ namespace AccountOwnerServer.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                var ownerEntity = _repository.Owner.GetOwnerById(id);
+                var ownerEntity = await _repository.Owner.GetOwnerByIdAsync(id);
                 if (ownerEntity is null)
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
@@ -151,7 +152,7 @@ namespace AccountOwnerServer.Controllers
 
                 _mapper.Map(owner, ownerEntity);
                 _repository.Owner.UpdateOwner(ownerEntity);
-                _repository.Save();
+                await _repository.SaveAsync();
                 return NoContent();
             }
             catch (Exception ex)
@@ -162,11 +163,11 @@ namespace AccountOwnerServer.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteOwner(Guid id)
+        public async Task<IActionResult> DeleteOwner(Guid id)
         {
             try
             {
-                var owner = _repository.Owner.GetOwnerById(id);
+                var owner = await _repository.Owner.GetOwnerByIdAsync(id);
                 if (owner is null)
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
@@ -180,7 +181,7 @@ namespace AccountOwnerServer.Controllers
                 }
 
                 _repository.Owner.DeleteOwner(owner);
-                _repository.Save();
+                await _repository.SaveAsync();
                 return NoContent();
             }
             catch (Exception ex)
