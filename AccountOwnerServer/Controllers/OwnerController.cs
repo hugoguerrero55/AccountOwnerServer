@@ -49,7 +49,7 @@ namespace AccountOwnerServer.Controllers
             try
             {
                 var owner = await _repository.Owner.GetOwnerByIdAsync(id);
-                if (owner == null)
+                if (owner is null)
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
                     return NotFound();

@@ -1,16 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Models
+namespace Entities.DataTransferObjects
 {
-    [Table("employee")]
-    public class Employee
+    public class EmployeeForCreationDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid EmployeeId { get; set; }
-
         [Required(ErrorMessage = "FirstName is required")]
         [StringLength(60, ErrorMessage = "FirstName can't be longer than 60 characters")]
         public string FirstName { get; set; }
@@ -29,6 +23,7 @@ namespace Entities.Models
         [Required(ErrorMessage = "Email is required")]
         [StringLength(100, ErrorMessage = "Email cannot be loner then 100 characters")]
         public string Email { get; set; }
+
         public string Gender { get; set; }
     }
 }

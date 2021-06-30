@@ -9,6 +9,7 @@ namespace Repository
         private readonly RepositoryContext _repoContext;
         private IOwnerRepository _owner;
         private IAccountRepository _account;
+        private IEmployeeRepository _employee;
 
         public IOwnerRepository Owner
         {
@@ -33,6 +34,19 @@ namespace Repository
                 }
 
                 return _account;
+            }
+        }
+
+        public IEmployeeRepository Employee
+        {
+            get
+            {
+                if (_employee is null)
+                {
+                    _employee = new EmployeeRepository(_repoContext);
+                }
+
+                return _employee;
             }
         }
 
