@@ -30,7 +30,7 @@ namespace AccountOwnerServer.Controllers
             try
             {
                 var employees = await _repository.Employee.GetAllEmployeesAsync();
-                _logger.LogInfo("Returned all employees from database");
+                _logger.LogInfo("Returned all employees from temporal database");
 
                 var employeesResult = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
                 return Ok(employeesResult);
