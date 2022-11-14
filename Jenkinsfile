@@ -20,8 +20,14 @@ pipeline {
         }
         stage ('Restore NuGet Packages') {
             steps {
-                echo 'Restoring NuGet Packages from ${WORKSPACE}'
+                echo 'Restoring NuGet Packages'
                 bat 'dotnet restore AccountOwnerServer.sln'
+            }
+        }
+        stage ('Clean Solution') {
+            steps {
+                echo 'Cleaning the solution using MSBuild.exe'
+                bat 'msbuild.exe AccountOwnerServer.sln' /nologo /nr:false /p:platform=\'x64\' /p:configuration=\'release\' /t:clean'
             }
         }
     }
