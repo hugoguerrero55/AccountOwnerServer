@@ -32,8 +32,8 @@ pipeline {
                 // if (exitStatus != 0){
                 //     currentBuild.result = 'FAILURE'
                 // }
-                // bat 'MSBuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
-                bat "msbuild.exe AccountOwnerServer.sln" /nologo /nr:false /p:platform=\"x64\" /p:configuration=\"release\" /t:clean"
+                // bat 'msbuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
+                bat 'msbuild AccountOwnerServer.sln /t:Clean'
             }
         }
     }
