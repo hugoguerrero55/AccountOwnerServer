@@ -27,7 +27,7 @@ pipeline {
         stage ('Clean Solution') {
             steps {
                 echo 'Cleaning the solution using MSBuild.exe'
-                bat 'C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\msbuild.exe AccountOwnerServer.sln /t:Clean'
+                bat 'dotnet clean AccountOwnerServer.sln'
             }
         }
     }
