@@ -27,7 +27,7 @@ pipeline {
         stage ('Clean Solution') {
             steps {
                 echo 'Cleaning the solution using MSBuild.exe'
-                bat 'msbuild.exe AccountOwnerServer.sln' /nologo /nr:false /p:platform='x64' /p:configuration='release' /t:clean
+                bat 'MSBuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
             }
         }
     }
