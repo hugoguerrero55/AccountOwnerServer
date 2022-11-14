@@ -18,5 +18,11 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/fjsevillamora/AccountOwnerServer.git'
             }
         }
+        stage ('Restore NuGet Packages') {
+            steps {
+                echo 'Restoring NuGet Packages from ' + ${WORKSPACE}
+                bat 'dotnet restore ${WORKSPACE}\\C:\\source\\repos\\AccountOwnerServer\\AccountOwnerServer.sln'
+            }
+        }
     }
 }
