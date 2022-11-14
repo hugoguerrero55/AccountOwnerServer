@@ -27,12 +27,13 @@ pipeline {
         stage ('Clean Solution') {
             steps {
                 echo 'Cleaning the solution using MSBuild.exe'
-                def msbuild =  "C:/Program Files (x86)/MSBuild/14.0/Bin/MsBuild.exe"
-                def exitStatus = bat(returnStatus: true, script: "${msbuild} AccountOwnerServer.sln /p:Configuration=Debug")
-                if (exitStatus != 0){
-                    currentBuild.result = 'FAILURE'
-                }
+                // def msbuild =  "C:/Program Files (x86)/MSBuild/14.0/Bin/MsBuild.exe"
+                // def exitStatus = bat(returnStatus: true, script: "${msbuild} AccountOwnerServer.sln /p:Configuration=Debug")
+                // if (exitStatus != 0){
+                //     currentBuild.result = 'FAILURE'
+                // }
                 // bat 'MSBuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
+                bat "msbuild.exe AccountOwnerServer.sln" /nologo /nr:false /p:platform=\"x64\" /p:configuration=\"release\" /t:clean"
             }
         }
     }
