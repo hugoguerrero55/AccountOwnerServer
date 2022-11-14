@@ -20,8 +20,8 @@ pipeline {
         }
         stage ('Restore NuGet Packages') {
             steps {
-                echo 'Restoring NuGet Packages from ' + ${WORKSPACE}
-                bat 'dotnet restore ${WORKSPACE}\\C:\\source\\repos\\AccountOwnerServer\\AccountOwnerServer.sln'
+                echo 'Restoring NuGet Packages from ${WORKSPACE}'
+                bat 'dotnet restore ${WORKSPACE}\\AccountOwnerServer.sln'
             }
         }
     }
