@@ -33,7 +33,7 @@ pipeline {
                 //     currentBuild.result = 'FAILURE'
                 // }
                 // bat 'msbuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
-                bat 'msbuild AccountOwnerServer.sln /t:Clean'
+                bat 'msbuild.exe AccountOwnerServer.sln /t:Clean'
             }
         }
     }
