@@ -4,7 +4,7 @@ pipeline {
         stage ('Stage 1') {
             steps {
                 echo 'This is the Stage 1 from Jenkinsfile'
-                echo 'Testing CI hooks configuration'
+                echo 'Testing CI hooks configuration - update'
             }
         }
         // stage ('Clean workspace') {
