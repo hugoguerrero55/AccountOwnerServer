@@ -33,7 +33,7 @@ pipeline {
                 //     currentBuild.result = 'FAILURE'
                 // }
                 // bat 'msbuild.exe AccountOwnerServer.sln' /t:'ProjectName:clean'
-                bat 'msbuild.exe AccountOwnerServer.sln /t:Clean'
+                bat 'C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\msbuild.exe AccountOwnerServer.sln /t:Clean'
             }
         }
     }
