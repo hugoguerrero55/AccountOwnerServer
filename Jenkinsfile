@@ -43,6 +43,9 @@ pipeline {
                 echo 'Deploying solution to target Folder'
                 echo 'Creating deploy folder in root'
                 bat 'mkdir deploy'
+
+                echo 'Publishing the solution'
+                bat 'dotnet publish --self-contained --runtime win-x64 -c Release  AccountOwnerServer.sln -o ./deploy'
             }
         }
     }
