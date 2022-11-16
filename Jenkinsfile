@@ -37,5 +37,13 @@ pipeline {
                 bat 'dotnet build AccountOwnerServer.sln'
             }
         }
+
+        stage ('Deploy Solution') {
+            steps {
+                echo 'Deploying solution to target Folder'
+                echo 'Creating deploy folder in root'
+                bat 'mkdir deploy'
+            }
+        }
     }
 }
