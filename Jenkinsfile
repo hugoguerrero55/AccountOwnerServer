@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage ('Stage 1') {
-            steps {
-                echo 'This is the Stage 1 from Jenkinsfile'
-            }
-        }
+        // stage ('Stage 1') {
+        //     steps {
+        //         echo 'This is the Stage 1 from Jenkinsfile'
+        //     }
+        // }
         stage ('Clean workspace') {
             steps {
                 echo 'Clean Workspace'
