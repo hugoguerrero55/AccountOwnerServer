@@ -48,7 +48,7 @@ pipeline {
                 echo 'Publishing the solution'
                 bat 'dotnet publish --self-contained --runtime  win-x64 -c Release  AccountOwnerServer.sln -o ./deploy'
 
-                fileOperations([fileZipOperation(folderPath: 'deploy', outputFolderPath: 'publishArtifacts')])
+                fileOperations([fileZipOperation(folderPath: 'deploy/*', outputFolderPath: 'publishArtifacts')])
             }
         }
     }
