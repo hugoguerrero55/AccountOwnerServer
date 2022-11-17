@@ -24,23 +24,23 @@ namespace AccountOwnerServer.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllEmployees()
-        {
-            try
-            {
-                var employees = await _repository.Employee.GetAllEmployeesAsync();
-                _logger.LogInfo("Returned all employees from the database");
+        // [HttpGet]
+        // public async Task<IActionResult> GetAllEmployees()
+        // {
+        //     try
+        //     {
+        //         var employees = await _repository.Employee.GetAllEmployeesAsync();
+        //         _logger.LogInfo("Returned all employees from the database");
 
-                var employeesResult = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
-                return Ok(employeesResult);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Something went wrong inside GetAllEmployeesAsync action: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //         var employeesResult = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
+        //         return Ok(employeesResult);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError($"Something went wrong inside GetAllEmployeesAsync action: {ex.Message}");
+        //         return StatusCode(500, "Internal server error");
+        //     }
+        // }
 
         [HttpGet("{id}", Name = "EmployeeById")]
         public async Task<IActionResult> GetEmployeeById(Guid id)
