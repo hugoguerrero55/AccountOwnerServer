@@ -52,6 +52,7 @@ pipeline {
                 fileOperations([fileZipOperation(folderPath: 'deploy', outputFolderPath: 'publishArtifacts')])
                 fileOperations([fileUnZipOperation(filePath: 'publishArtifacts/deploy.zip', targetLocation: 'published')])
                 fileOperations([folderCopyOperation(destinationFolderPath: 'published', sourceFolderPath: 'published/deploy')])
+                fileOperations([folderDeleteOperation('published/deploy')])
             }
         }
     }
