@@ -45,7 +45,7 @@ pipeline {
                 bat 'mkdir deploy'
 
                 echo 'Publishing the solution'
-                bat 'dotnet publish --self-contained -r  Any CPU -c Release  AccountOwnerServer.sln -o ./deploy'
+                bat 'dotnet publish --self-contained --runtime  Any CPU -c Release  AccountOwnerServer.sln -o ./deploy'
             }
         }
     }
