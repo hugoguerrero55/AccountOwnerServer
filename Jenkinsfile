@@ -50,9 +50,9 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'deploy/**', fingerprint: true
-        }
-    }
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: 'deploy/**', fingerprint: true
+    //     }
+    // }
 }
