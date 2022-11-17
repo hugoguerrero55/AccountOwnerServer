@@ -49,4 +49,10 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'deploy/**' fingerprint: true
+        }
+    }
 }
