@@ -15,7 +15,7 @@ pipeline {
         stage ('Git Checkout') {
             steps {
                 echo 'Checkout the source code from Github'
-                git branch: 'master', url: 'https://github.com/fjsevillamora/AccountOwnerServer.git'
+                git branch: 'master', url: 'https://github.com/hugoguerrero55/AccountOwnerServer.git'
             }
         }
         stage ('Restore NuGet Packages') {
